@@ -1,6 +1,45 @@
 import test from "ava";
-import { example } from "../src";
+import { schema } from "../src";
 
-test("simple replace", async (t) => {
-    t.is(example("a"), "a");
+test("simple schema", async (t) => {
+    const valid = schema({
+        id: Number,
+    });
+
+    try {
+        const resultSuccess = await valid({ id: "10" });
+        t.deepEqual(resultSuccess, { id: 10 });
+    } catch (e) {
+        t.fail();
+    }
+});
+
+test("simple reject", async (t) => {
+    const valid = schema({
+        id: () => Promise.reject("invalid id"),
+    });
+    try {
+        await valid({ id: "10" });
+        t.fail();
+    } catch (error) {
+        t.deepEqual(error, { id: "invalid id" });
+    }
+});
+
+test("simple nested", async (t) => {
+    const data = schema({
+        id: Number,
+    });
+    const user = schema({
+        data,
+    });
+
+    try {
+        const result = await user({
+            data: { id: "100" },
+        });
+        t.deepEqual(result, { data: { id: 100 } });
+    } catch (error) {
+        t.fail();
+    }
 });

@@ -3,19 +3,12 @@ import builtins from "builtin-modules";
 import pkg from "./package.json";
 
 export default {
-    input: ["./src/index.js"],
-    output: [
-        {
-            dir: "cjs",
-            format: "cjs",
-            sourcemap: true,
-        },
-        {
-            dir: "esm",
-            format: "esm",
-            sourcemap: true,
-        },
-    ],
+    input: ["./src/schema.js"],
+    output: {
+        dir: "./",
+        format: "./",
+        sourcemap: true,
+    },
     external: [...builtins, ...Object.keys(pkg.dependencies)],
     plugins: [resolve()],
 };
