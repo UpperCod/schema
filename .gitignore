@@ -2,3 +2,7 @@
 /esm
 /cjs
 /package-lock.json
+/filter.js
+/index.js
+/transform.js
+/*.js.map
