@@ -16,10 +16,12 @@ test("simple schema", async (t) => {
 
 test("simple reject", async (t) => {
     const valid = schema({
-        id: () => Promise.reject("invalid id"),
+        id: () => {
+            throw "invalid id";
+        },
     });
     try {
-        await valid({ id: "10" });
+        valid({ id: "10" });
         t.fail();
     } catch (error) {
         t.deepEqual(error, { id: "invalid id" });

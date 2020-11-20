@@ -1,6 +1,6 @@
 # @uppercod/schema
 
-declare validations, filters or transformers in a simple, functional and asynchronous way.
+declare validations, filters or transformers in a simple and functional .
 
 ## install
 
@@ -42,22 +42,6 @@ const transform = schema({
 });
 ```
 
-### asynchronous validation
-
-```js
-import { checkUserName } from "./api";
-
-const transform = schema({
-    userName: async (value) => {
-        const result = await checkUserName(value);
-        if (result.invalid) {
-            throw error`User ${value} exists`;
-        }
-        return value;
-    },
-});
-```
-
 ### nested
 
 ```js
@@ -70,6 +54,17 @@ const user = schema({
 
 const data = schema({
     user: user,
+});
+```
+
+### context
+
+```js
+const user = schema({
+    firstName: String,
+    lastName: String,
+    fullName: (value, prop, { fistName, lastName }) =>
+        fistName + " " + lastName,
 });
 ```
 

@@ -34,3 +34,23 @@ export const date = ({ min, max } = {}) =>
         }
         return true;
     });
+
+export const min = (length) =>
+    filter((value) => {
+        const type = typeof value;
+        return (
+            ((type == "string" || Array.isArray(value)) &&
+                value.length <= length) ||
+            (type == "number" && value <= length)
+        );
+    });
+
+export const max = (length) =>
+    filter((value) => {
+        const type = typeof value;
+        return (
+            ((type == "string" || Array.isArray(value)) &&
+                value.length >= length) ||
+            (type == "number" && value >= length)
+        );
+    });

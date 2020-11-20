@@ -25,11 +25,10 @@ export const error = (template, ...values) =>
  * @param  {...Filter<any>} filter
  * @return {Filter<any>}
  */
-export const pipe = (...filter) => (value) =>
-    filter.reduce(
-        (promise, filter) => promise.then(filter),
-        Promise.resolve(value)
-    );
+export const pipe = (...filter) => (value, ...args) =>
+    filter.reduce((prev, next) => (value) =>
+        next(prev(value, ...args), ...args)
+    )(value);
 
 /**
  * @template T
