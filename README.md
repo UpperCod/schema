@@ -86,3 +86,18 @@ schema({
     status: options("active", "inactive"),
 });
 ```
+
+## Api 2
+
+```js
+import { schema, optional, use } from "@uppercod/schema";
+
+schema({
+    id: (value, field, context) => {},
+    firstName : minLength(3)
+    fullName: () => {
+        const {firstName,lastName} = use("valid");
+        return firstName + " "+ lastName;
+    },
+});
+```
