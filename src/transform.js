@@ -1,29 +1,41 @@
 import { error } from "./index";
 
-export function date(value) {
-    const d = new Date(value);
-    const valid = d.getDate() == d.getDate();
-    if (valid) {
-        return d;
-    } else {
-        throw error(date)`${value}`;
+export const transform = (callback, reference) => (value) => {
+    try {
+        return callback(value);
+    } catch (err) {
+        throw error(reference || callback)`${value}`;
     }
-}
+};
+
+export const date = () =>
+    transform((value) => {
+        const d = new Date(value);
+        const valid = d.getDate() == d.getDate();
+        if (valid) {
+            return d;
+        } else {
+            throw value;
+        }
+    }, date);
 /**
  * forces a value as boolean
- * @param {*} value
- * @return {boolean}
+ * @return {(value:any)=>boolean}
  */
-export const bool = (value) =>
-    typeof value == "string" ? Boolean(value) : !!value;
+export const bool = () =>
+    transform(
+        (value) => (typeof value == "string" ? Boolean(value) : !!value),
+        bool
+    );
 /**
  * fill in the value
  * @param {*} optional
+ * @returns {(value:any)=>any}
  */
-export const fill = (optional) => (value) => (value ? value : optional);
+export const fill = (optional) =>
+    transform((value) => (value ? value : optional), fill);
 
 /**
- * @param {string} value
- * @returns {string}
+ * @returns {(value:string)=>string}
  */
-export const trim = (value) => value.trim();
+export const trim = () => transform((value) => value.trim(), trim);

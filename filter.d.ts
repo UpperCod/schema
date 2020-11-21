@@ -1,14 +1,13 @@
-type Filter = (value: any) => boolean;
-type Result<T> = (value: T) => T;
+import { Filter } from "./types";
 
-export function filter<T>(filter: Filter): Result<T>;
+export function filter<T>(filter: Filter<boolean>): Filter<T>;
 
-export function options<T>(...args: T[]): Result<T>;
+export function options<T>(...args: T[]): Filter<T>;
 
-export function date(option?: { min?: Date; max?: Date }): Result<string>;
+export function date(option?: { min?: Date; max?: Date }): Filter<string>;
 
-export function min(length: number): Result<any>;
+export function min(length: number): Filter<any>;
 
-export function max(length: number): Result<any>;
+export function max(length: number): Filter<any>;
 
-export function type(value: { name: string }): Result<any>;
+export function type(value: { name: string }): Filter<any>;

@@ -4,7 +4,7 @@ import { trim, date, bool, fill } from "../src/transform";
 
 test("transform trim", (t) => {
     const valid = schema({
-        name: trim,
+        name: trim(),
     });
     try {
         const result = valid({
@@ -18,7 +18,7 @@ test("transform trim", (t) => {
 
 test("transform date", (t) => {
     const valid = schema({
-        name: date,
+        name: date(),
     });
     try {
         const result = valid({
@@ -32,7 +32,7 @@ test("transform date", (t) => {
 
 test("transform bool", (t) => {
     const valid = schema({
-        name: bool,
+        name: bool(),
     });
     try {
         const result = valid({
@@ -63,7 +63,7 @@ test("transform fill", (t) => {
 
 test("transform pipe", (t) => {
     const valid = schema({
-        name: pipe(fill("  uppercod  "), trim),
+        name: pipe(fill("  uppercod  "), trim()),
     });
     try {
         const result = valid({});

@@ -1,7 +1,9 @@
-export function date(value: string): Date;
+import { Filter } from "./types";
 
-export function bool(value: any): boolean;
+export function date(): (value: any) => Date;
 
-export function trim(value: string): string;
+export function bool(): () => boolean;
+
+export function trim(): () => string;
 
 export function fill<T>(optional: T): T;

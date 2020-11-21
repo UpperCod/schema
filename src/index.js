@@ -1,4 +1,4 @@
-import { error } from "./utils";
+import { error, Message } from "./utils";
 export * from "./utils";
 /**
  * Create a filter map, which will then be
@@ -17,7 +17,7 @@ export function schema(schema, log) {
             try {
                 valid[prop] = schema[prop](data[prop], prop, valid);
             } catch (err) {
-                if (!err.from) {
+                if (!(err instanceof Message)) {
                     err = error(schema[prop])`${err}`;
                 }
                 err.value = data[prop];
