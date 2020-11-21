@@ -1,6 +1,6 @@
 # @uppercod/schema
 
-declare validations, filters or transformers in a simple and functional .
+declare validations, filters or transformers in a simple and functional.
 
 ## install
 

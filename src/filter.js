@@ -40,8 +40,8 @@ export const min = (length) =>
         const type = typeof value;
         return (
             ((type == "string" || Array.isArray(value)) &&
-                value.length <= length) ||
-            (type == "number" && value <= length)
+                value.length >= length) ||
+            (type == "number" && value >= length)
         );
     });
 
@@ -50,8 +50,8 @@ export const max = (length) =>
         const type = typeof value;
         return (
             ((type == "string" || Array.isArray(value)) &&
-                value.length >= length) ||
-            (type == "number" && value >= length)
+                value.length <= length) ||
+            (type == "number" && value <= length)
         );
     });
 
