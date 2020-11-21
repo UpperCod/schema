@@ -1,11 +1,13 @@
+import { error } from "./utils";
 export * from "./utils";
 /**
  * Create a filter map, which will then be
  * used to compare with the input data
  * @param {Data} schema
+ * @param {(message:any)=>string} [log]
  * @return {(data:Data)=>Data}
  */
-export function schema(schema) {
+export function schema(schema, log) {
     return (data) => {
         /**@type {Data} */
         const valid = {};
@@ -14,8 +16,13 @@ export function schema(schema) {
         for (const prop in schema) {
             try {
                 valid[prop] = schema[prop](data[prop], prop, valid);
-            } catch (error) {
-                invalid[prop] = error;
+            } catch (err) {
+                if (!err.from) {
+                    err = error(schema[prop])`${err}`;
+                }
+                err.value = data[prop];
+                err.prop = prop;
+                invalid[prop] = log ? log(err) : err;
             }
         }
         if (Object.keys(invalid).length) {

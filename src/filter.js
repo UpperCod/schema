@@ -1,3 +1,4 @@
+import { error } from "./index";
 import { date as _date } from "./transform";
 /**
  * evaluate the return of the callback as boolean, to check the validation
@@ -9,7 +10,7 @@ export const filter = (callback) => (value) => {
     if (callback(value)) {
         return value;
     } else {
-        throw value;
+        throw error(callback)`${value}`;
     }
 };
 

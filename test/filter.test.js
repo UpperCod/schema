@@ -26,7 +26,7 @@ test("simple options", (t) => {
         valid({ id: 10 });
         t.fail();
     } catch (error) {
-        t.deepEqual(error, { id: 10 });
+        t.is(error.id.message, "10");
     }
 });
 
@@ -56,7 +56,7 @@ test("simple invalid date", (t) => {
         });
         t.fail();
     } catch (error) {
-        t.deepEqual(error, { date: "32-01-2020" });
+        t.is(error.date.message, "32-01-2020");
     }
 });
 
@@ -66,12 +66,12 @@ test("simple invalid date.min", (t) => {
     });
 
     try {
-        const result = valid({
+        valid({
             date: "01-01-2020",
         });
         t.fail();
     } catch (error) {
-        t.deepEqual(error, { date: "01-01-2020" });
+        t.is(error.date.message, "01-01-2020");
     }
 });
 
@@ -81,12 +81,12 @@ test("simple invalid date.max", (t) => {
     });
 
     try {
-        const result = valid({
+        valid({
             date: "03-01-2020",
         });
         t.fail();
     } catch (error) {
-        t.deepEqual(error, { date: "03-01-2020" });
+        t.is(error.date.message, "03-01-2020");
     }
 });
 
@@ -108,7 +108,7 @@ test("simple invalid min", (t) => {
         });
         t.fail();
     } catch (error) {
-        t.deepEqual(error, { name: "ma" });
+        t.is(error.name.message, "ma");
     }
 });
 
@@ -130,7 +130,7 @@ test("simple invalid max", (t) => {
         });
         t.fail();
     } catch (error) {
-        t.deepEqual(error, { name: "uppercod" });
+        t.is(error.name.message, "uppercod");
     }
 });
 
@@ -152,7 +152,7 @@ test("filter pipe", (t) => {
         });
         t.fail();
     } catch (error) {
-        t.deepEqual(error, { name: "uppercod" });
+        t.is(error.name.message, "uppercod");
     }
 });
 
@@ -174,6 +174,6 @@ test("filter type", (t) => {
         });
         t.fail();
     } catch (error) {
-        t.deepEqual(error, { value: "uppercod" });
+        t.is(error.value.message, "uppercod");
     }
 });

@@ -24,7 +24,7 @@ test("simple reject", async (t) => {
         valid({ id: "10" });
         t.fail();
     } catch (error) {
-        t.deepEqual(error, { id: "invalid id" });
+        t.is(error.id.message, "invalid id");
     }
 });
 

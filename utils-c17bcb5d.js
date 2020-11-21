@@ -1,4 +1,4 @@
-export class Message extends String {
+class Message extends String {
     /**
      *
      * @param {string} message
@@ -16,7 +16,7 @@ export class Message extends String {
  * @param {(value:any)=>any} callback
  * @returns {(template:TemplateStringsArray,...values:any)=>Message}
  */
-export const error = (callback) => (template, ...values) =>
+const error = (callback) => (template, ...values) =>
     new Message(
         template.reduce((current, part, index) => {
             const type = typeof values[index];
@@ -41,7 +41,7 @@ export const error = (callback) => (template, ...values) =>
  * @param  {...Filter<any>} filter
  * @return {Filter<any>}
  */
-export const pipe = (...filter) => (value, ...args) =>
+const pipe = (...filter) => (value, ...args) =>
     filter.reduce((prev, next) => (value) =>
         next(prev(value, ...args), ...args)
     )(value);
@@ -52,3 +52,6 @@ export const pipe = (...filter) => (value, ...args) =>
  * @param {T} value
  * @return {T}
  */
+
+export { Message as M, error as e, pipe as p };
+//# sourceMappingURL=utils-c17bcb5d.js.map

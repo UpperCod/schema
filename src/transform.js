@@ -1,10 +1,12 @@
+import { error } from "./index";
+
 export function date(value) {
     const d = new Date(value);
     const valid = d.getDate() == d.getDate();
     if (valid) {
         return d;
     } else {
-        throw value;
+        throw error(date)`${value}`;
     }
 }
 /**
