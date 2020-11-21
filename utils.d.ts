@@ -1,9 +1,4 @@
-export interface Message extends String {
-    prop: string;
-    value: any;
-    message: string;
-    from: Filter<any>;
-}
+import { Message, Filter } from "./types";
 
 export function pipe<T extends Filter<any>>(...args: T[]): T;
 

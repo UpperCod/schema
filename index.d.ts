@@ -1,16 +1,6 @@
-export type Filter<T> = T extends (...args: any[]) => any ? ReturnType<T> : any;
-
-export type Schema<T> = {
-    [I in keyof T]: Filter<T[I]>;
-};
-
-import { Message } from "./utils";
+import { Message, Fill, Schema } from "./types";
 
 export * from "./utils";
-
-export type Fill<T> = {
-    [i in keyof T]?: any;
-};
 
 export type Log = (message: Message) => string;
 
