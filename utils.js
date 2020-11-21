@@ -53,5 +53,5 @@ const pipe = (...filter) => (value, ...args) =>
  * @return {T}
  */
 
-export { Message as M, error as e, pipe as p };
-//# sourceMappingURL=utils-c17bcb5d.js.map
+export { Message, error, pipe };
+//# sourceMappingURL=utils.js.map

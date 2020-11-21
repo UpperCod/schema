@@ -3,7 +3,12 @@ import builtins from "builtin-modules";
 import pkg from "./package.json";
 
 export default {
-    input: ["./src/index.js", "./src/filter.js", "./src/transform.js"],
+    input: [
+        "./src/index.js",
+        "./src/filter.js",
+        "./src/transform.js",
+        "./src/utils.js",
+    ],
     output: [
         {
             dir: "cjs",
