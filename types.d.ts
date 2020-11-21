@@ -1,4 +1,6 @@
-export type Filter<T> = T extends (...args: any[]) => any ? ReturnType<T> : T;
+export type Filter<T> = T extends (...args: any[]) => any
+    ? ReturnType<T>
+    : (value: any) => T;
 
 export type Schema<T> = {
     [I in keyof T]: Filter<T[I]>;

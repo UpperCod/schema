@@ -8,7 +8,7 @@ export * from "./utils";
  * @return {(data:Data)=>Data}
  */
 export function schema(schema, log) {
-    return (data) => {
+    return (data, trycatch) => {
         /**@type {Data} */
         const valid = {};
         /**@type {Data} */
@@ -25,10 +25,14 @@ export function schema(schema, log) {
                 invalid[prop] = log ? log(err) : err;
             }
         }
-        if (Object.keys(invalid).length) {
-            throw invalid;
+        if (trycatch !== false) {
+            if (Object.keys(invalid).length) {
+                throw invalid;
+            } else {
+                return valid;
+            }
         } else {
-            return valid;
+            return [valid, invalid];
         }
     };
 }

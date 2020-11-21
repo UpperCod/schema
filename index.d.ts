@@ -1,7 +1,14 @@
 import { Message, Fill, Schema } from "./types";
 
 export * from "./utils";
+export * from "./types";
 
 export type Log = (message: Message) => string;
 
-export function schema<T>(data: T, log?: Log): (data: Fill<T>) => Schema<T>;
+export type Test1<T> = <R = {}>(data: Fill<T>) => Schema<T> & Partial<R>;
+export type Test2<T> = <R = {}>(
+    data: Fill<T>,
+    trycatch: false
+) => (Schema<T> & Partial<R>)[];
+
+export function schema<T>(data: T, log?: Log): Test1<T> & Test2<T>;

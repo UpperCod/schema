@@ -1,6 +1,6 @@
 {
     "name": "@uppercod/schema",
-    "version": "0.4.7",
+    "version": "0.5.0",
     "description": "declare validations, filters or transformers in a simple and functional.",
     "main": "./index.js",
     "module": "./index.js",

@@ -6,8 +6,10 @@ export function options<T>(...args: T[]): Filter<T>;
 
 export function date(option?: { min?: Date; max?: Date }): Filter<string>;
 
-export function min(length: number): Filter<any>;
+export function min<T = any>(length: number): Filter<T>;
 
-export function max(length: number): Filter<any>;
+export function max<T = any>(length: number): Filter<T>;
 
-export function type(value: { name: string }): Filter<any>;
+export function type<T extends (...args: any[]) => any>(
+    value: T
+): Filter<ReturnType<T>>;
