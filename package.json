@@ -1,6 +1,6 @@
 {
     "name": "@uppercod/schema",
-    "version": "0.3.0",
+    "version": "0.3.6",
     "description": "declare validations, filters or transformers in a simple, functional and asynchronous way.",
     "main": "./index.js",
     "module": "./index.js",
@@ -41,7 +41,18 @@
         ]
     },
     "exports": {
-        "import": "./"
+        ".": {
+            "import": "./index.js",
+            "require": "./cjs/index.js"
+        },
+        "./filter": {
+            "import": "./filter.js",
+            "require": "./cjs/filter.js"
+        },
+        "./transform": {
+            "import": "./transform.js",
+            "require": "./cjs/transform.js"
+        }
     },
     "prettier": {
         "tabWidth": 4,
