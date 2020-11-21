@@ -33,9 +33,15 @@ export const bool = () =>
  * @returns {(value:any)=>any}
  */
 export const fill = (optional) =>
-    transform((value) => (value ? value : optional), fill);
+    transform((value) => (value ? value : optional()), fill);
 
 /**
  * @returns {(value:string)=>string}
  */
 export const trim = () => transform((value) => value.trim(), trim);
+
+export const timestamp = () =>
+    transform(
+        (value) => (value ? date()(value).valueOf() : Date.now()),
+        timestamp
+    );

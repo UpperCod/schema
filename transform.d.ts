@@ -7,3 +7,5 @@ export function bool(): () => boolean;
 export function trim(): () => string;
 
 export function fill<T>(optional: T): T;
+
+export function timestamp(): () => number;

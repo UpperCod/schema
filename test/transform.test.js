@@ -48,7 +48,7 @@ test("transform bool", (t) => {
 
 test("transform fill", (t) => {
     const valid = schema({
-        name: fill(true),
+        name: fill(() => true),
     });
     try {
         const result = valid({});
@@ -63,7 +63,10 @@ test("transform fill", (t) => {
 
 test("transform pipe", (t) => {
     const valid = schema({
-        name: pipe(fill("  uppercod  "), trim()),
+        name: pipe(
+            fill(() => "  uppercod  "),
+            trim()
+        ),
     });
     try {
         const result = valid({});
