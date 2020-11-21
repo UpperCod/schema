@@ -11,3 +11,5 @@ export type Fill<T> = {
 export function schema<T>(data: T): (data: Fill<T>) => Schema<T>;
 
 export function pipe<T extends Filter<any>>(...args: T[]): T;
+
+export function message<T>(filter: T, message: string): T;

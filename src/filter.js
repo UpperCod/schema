@@ -54,3 +54,6 @@ export const max = (length) =>
             (type == "number" && value >= length)
         );
     });
+
+export const type = ({ name }) =>
+    filter((value) => ({}.toString.call(value) == `[object ${name}]`));

@@ -31,6 +31,22 @@ export const pipe = (...filter) => (value, ...args) =>
     )(value);
 
 /**
+ *
+ * @param {Filter<any>} callback
+ * @param {string} msj
+ * @returns {Filter<any>}
+ */
+export const message = (callback, msj) => (value, prop) => {
+    try {
+        callback(value);
+    } catch (e) {
+        throw msj
+            .replace(/{ *prop *}/g, prop)
+            .replace(/{ *value *}/g, error`${value}`);
+    }
+};
+
+/**
  * @template T
  * @callback Filter
  * @param {T} value
