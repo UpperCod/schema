@@ -1,4 +1,4 @@
-import { schema, pipe } from "../src";
+import { schema, compose } from "../src";
 import { options, min } from "../src/filter";
 import { trim, fill } from "../src/transform";
 

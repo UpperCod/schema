@@ -41,7 +41,7 @@ const error = (callback) => (template, ...values) =>
  * @param  {...Filter<any>} filter
  * @return {Filter<any>}
  */
-const pipe = (...filter) => (value, ...args) =>
+const compose = (...filter) => (value, ...args) =>
     filter.reduce((prev, next) => (value) =>
         next(prev(value, ...args), ...args)
     )(value);
@@ -53,5 +53,5 @@ const pipe = (...filter) => (value, ...args) =>
  * @return {T}
  */
 
-export { Message, error, pipe };
+export { Message, compose, error };
 //# sourceMappingURL=utils.js.map

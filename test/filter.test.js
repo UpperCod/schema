@@ -1,5 +1,5 @@
 import test from "ava";
-import { schema, pipe } from "../src";
+import { schema, compose } from "../src";
 import { filter, options, date, min, max, type } from "../src/filter";
 
 test("simple filter", (t) => {
@@ -134,9 +134,9 @@ test("simple invalid max", (t) => {
     }
 });
 
-test("filter pipe", (t) => {
+test("filter compose", (t) => {
     const valid = schema({
-        name: pipe(min(3), max(5)),
+        name: compose(min(3), max(5)),
     });
     try {
         const result = valid({

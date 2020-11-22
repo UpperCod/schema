@@ -1,5 +1,5 @@
 import test from "ava";
-import { schema, pipe } from "../src";
+import { schema, compose } from "../src";
 import { trim, date, bool, fill } from "../src/transform";
 
 test("transform trim", (t) => {
@@ -61,9 +61,9 @@ test("transform fill", (t) => {
     }
 });
 
-test("transform pipe", (t) => {
+test("transform compose", (t) => {
     const valid = schema({
-        name: pipe(
+        name: compose(
             fill(() => "  uppercod  "),
             trim()
         ),

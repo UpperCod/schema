@@ -41,7 +41,7 @@ export const error = (callback) => (template, ...values) =>
  * @param  {...Filter<any>} filter
  * @return {Filter<any>}
  */
-export const pipe = (...filter) => (value, ...args) =>
+export const compose = (...filter) => (value, ...args) =>
     filter.reduce((prev, next) => (value) =>
         next(prev(value, ...args), ...args)
     )(value);

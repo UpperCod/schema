@@ -1,6 +1,6 @@
 import { Message, Filter } from "./types";
 
-export function pipe<T extends Filter<any>>(...args: T[]): T;
+export function compose<T extends Filter<any>>(...args: T[]): T;
 
 export function error(
     filter: Filter<any>
