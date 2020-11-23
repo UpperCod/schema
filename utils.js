@@ -47,11 +47,36 @@ const compose = (...filter) => (value, ...args) =>
     )(value);
 
 /**
+ *
+ * @param {Filter<any>} filter
+ * @returns {Filter<any>}
+ */
+const list = (filter) => (value, prop) => {
+    if (Array.isArray(value)) {
+        const invalid = {};
+        const valid = value.map((value, index) => {
+            try {
+                return filter(value, `${prop}[${index}]`);
+            } catch (err) {
+                invalid[index] = err;
+            }
+        });
+        if (Object.keys(invalid).length) {
+            throw error(list)`${invalid}`;
+        } else {
+            return valid;
+        }
+    }
+    return [];
+};
+/**
  * @template T
  * @callback Filter
  * @param {T} value
+ * @param {string} [prop]
+ * @param {Object<string,any>} [valid]
  * @return {T}
  */
 
-export { Message, compose, error };
+export { Message, compose, error, list };
 //# sourceMappingURL=utils.js.map
