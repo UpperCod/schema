@@ -6,4 +6,6 @@ export function error(
     filter: Filter<any>
 ): (template: TemplateStringsArray, ...args: any[]) => Message;
 
-export function list<T extends Filter<any>>(filter: T): T[];
+export function list<T extends Filter<any>>(
+    filter: T
+): T extends (...args: any[]) => infer U ? U[] : T;

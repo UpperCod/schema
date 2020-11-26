@@ -1,5 +1,7 @@
-export type Filter<T> = T extends (...args: any[]) => any
-    ? ReturnType<T>
+export type Filter<T> = T extends (...args: any[]) => infer U
+    ? U
+    : T extends any[]
+    ? T
     : (value: any) => T;
 
 export type Schema<T> = {
