@@ -45,3 +45,6 @@ export const timestamp = () =>
         (value) => (value ? date()(value).valueOf() : Date.now()),
         timestamp
     );
+
+export const stripTags = () =>
+    transform((value) => value.replace(/(<([^>]+)>)/gi, ""), stripTags);
